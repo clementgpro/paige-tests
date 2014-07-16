@@ -1,4 +1,4 @@
-var MyTestPage = require('./File.js');
+var MyTestPage = require('../File.js');
 
 var config = {
   address: 'http://happy.pixafy.com/glassful/current/index.php/',
