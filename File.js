@@ -1,7 +1,7 @@
 var Page = require('be-paige').Page,
 
 Index = Page.extend({
-  pageRoot: 'http://happy.pixafy.com/glassful/current/index.php/customer/account/login/',
+  pageRoot: '/customer/account/login/',
 
   selectors: {
     email: '#email'
