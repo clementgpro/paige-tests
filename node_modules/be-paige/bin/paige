@@ -1,0 +1,29 @@
+#!/usr/bin/env node
+
+var spawn = require('child_process').spawn;
+var args = [__dirname + '/../lib/cli/index.js'];
+
+process.argv.slice(2).forEach(function(arg) {
+  var flag = arg.split('=')[0];
+
+  switch (flag) {
+    case 'debug':
+    case '--debug':
+      args.unshift(arg);
+      break;
+    default:
+      args.push(arg);
+      break;
+  }
+});
+
+var proc = spawn(process.argv[0], args, { stdio: 'inherit' });
+proc.on('exit', function (code, signal) {
+  process.on('exit', function() {
+    if (signal) {
+      process.kill(process.pid, signal);
+    } else {
+      process.exit(code);
+    }
+  });
+});

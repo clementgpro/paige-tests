@@ -1,0 +1,5 @@
+var a = 0;
+var b = a.extend({
+  arg: 'something'
+})
+module.exports = Index;
