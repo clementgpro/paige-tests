@@ -1,4 +1,4 @@
-var MyTestPage = require('./File.js');
+var MyTestPage = require('../File.js');
 
 bescribe("Some description", function(context, describe, it) {
   describe("My Test Page", function() {
