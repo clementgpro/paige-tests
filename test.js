@@ -4,9 +4,7 @@ bescribe("Some description", function(context, describe, it) {
   describe("My Test Page", function() {
     it("has elements on it's page", function() {
       context.Page.build()
-      .redirectTo(MyTestPage)
-      .clickOnUserButton()
-      .checkThatProfileIsShown();
+      .enterEmail();
     });
 
     // More it() functions can go here
