@@ -5,7 +5,7 @@ var config = {
   webdriver: {
     address: 'http://localhost:4444/wd/hub',
     config: {
-      platform: 'MAC'
+      platform: 'MAC',
       browserName: 'chrome'
     }
   }
