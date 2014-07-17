@@ -6,8 +6,8 @@ Home = Page.extend({
   pageRoot: '/customer/account/login/',
 
   selectors: {
-    form: '#login-form',
-    email: '#email',
+    form: '.main #login-form',
+    email: '.main #email',
   },
 
   // This can be accomplished using our Form component, but is included for illustration purposes.
@@ -16,6 +16,7 @@ Home = Page.extend({
     this.whenDisplayed(this.selectors.form).then(function () {
       // Enter the text in the text box
       this.find(this.selectors.email).sendKeys(text);
+      
     }.bind(this));
 
     return this;
