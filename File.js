@@ -7,7 +7,7 @@ Home = Page.extend({
 
   selectors: {
     form: '#login-form',
-    email: '#login-form #email',
+    email: '#email',
   },
 
   // This can be accomplished using our Form component, but is included for illustration purposes.
