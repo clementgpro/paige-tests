@@ -7,7 +7,7 @@ Index = Page.extend({
     email: '#email'
   },
 
-  enterEmail: function(text) {
+  enterEmail: function  (text) {
     this.whenDisplayed(this.selectors.email).then(function (){
         console.log('test');
     }).bind(this);
