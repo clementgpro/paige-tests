@@ -18,7 +18,7 @@ bescribe("Some description", config, function(context, describe, it) {
       context.Page.build()
       .redirectTo(MyTestPage)
       .completeLoginForm()
-      .submitForm()
+      .submitLoginForm()
     });
 
     // More it() functions can go here
