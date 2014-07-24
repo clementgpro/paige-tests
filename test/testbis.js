@@ -1,7 +1,8 @@
 var bescribe = require('be-paige/bescribe');
-var MyTestPage = require('../File.js');
+var MyTestPage = require('../Page.js');
+
 var config = {
-  address: 'http://happy.pixafy.com/glassful/current/index.php',
+  address: 'https://www.glassful.com/',
   webdriver: {
     address: 'http://localhost:4444/wd/hub',
     config: {
@@ -16,7 +17,8 @@ bescribe("Some description", config, function(context, describe, it) {
     it("has elements on it's page", function() {
       context.Page.build()
       .redirectTo(MyTestPage)
-      .enterEmail('email');
+      .completeLoginForm()
+      .submitForm()
     });
 
     // More it() functions can go here
