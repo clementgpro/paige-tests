@@ -1,14 +1,14 @@
-Page = require('be-paige').Page,
+var Page = require('be-paige').Page;
 
-Forms = require('be-paige').components.form,
+var Forms = require('be-paige').components.form;
 
-expect = require('chai').expect,
+var expect = require('chai').expect;
 
-Login = Page.extend({
+var Login = Page.extend({
   pageRoot: '/customer/account/login/',
 
   selectors: {
-    // selectors go here
+    pricing: '.txt-box-pricing.scoutcondensedregular'
   },
 
   forms: {
@@ -26,11 +26,10 @@ Login = Page.extend({
         }
       }
     }
-  }, 
+  },
 
   completeLoginForm: function() {
-    return this.enterInformation('loginForm',  
-    {
+    return this.enterInformation('loginForm', {
       emailField: 'test@yopmail.fr',
       passwordField: 'password'
     });
@@ -38,16 +37,14 @@ Login = Page.extend({
 
   submitLoginForm: function() {
     return this.submitForm('loginForm');
+  },
+
+  verifyPrice: function() {
+    return this.whenDisplayed(this.selectors.pricing).then(function() {
+      console.log(this.find(this.selectors.pricing)[0]);
+    }.bind(this));
   }
 
-  verifyPrice: function(){
-    return this.find('.txt-box-pricing.scoutcondensedregular').then(
-      function(element){
-        expect(element.getValue()).to.contain('$35.00'):  
-      }
-    );
-  }
-
-}).with(Forms); 
+}).with(Forms);
 
 module.exports = Login;
