@@ -1,5 +1,5 @@
 var bescribe = require('be-paige/bescribe');
-var MyTestPage = require('../Page.js');
+var Page = require('../Page.js');
 
 var config = {
   address: 'https://www.glassful.com/',
@@ -16,9 +16,10 @@ bescribe("Some description", config, function(context, describe, it) {
   describe("My Test Page", function() {
     it("has elements on it's page", function() {
       context.Page.build()
-      .redirectTo(MyTestPage)
+      .redirectTo(Page)
       .completeLoginForm()
       .submitLoginForm()
+      .verifyPrice();
     });
 
     // More it() functions can go here
