@@ -1,6 +1,5 @@
 var bescribe = require('be-paige/bescribe');
 var Page = require('../Page.js');
-var moment = require('moment');
 
 var config = {
   address: 'https://www.glassful.com',
