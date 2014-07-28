@@ -13,7 +13,6 @@ var config = {
   }
 };
 
-console.log(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
 bescribe("Batch tasks", config, function(context, describe, it) {
   describe("Verify", function() {
     it("Welcome box price is equal to $35", function() {

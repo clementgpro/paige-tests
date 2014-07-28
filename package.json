@@ -1,0 +1,13 @@
+{
+	"name": "glassful-tests",
+	"description": "Glassful tests",
+	"version": "0.0.1",
+	"private": true,
+	"dependencies": {
+		"be-paige": "0.3.2",
+		"chai": "1.9.1"
+	},
+	"scripts": {
+		"test": "./node_modules/.bin/mocha --recursive -R xunit test/ > log/test-reports.xml"
+	}
+}

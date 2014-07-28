@@ -4,3 +4,4 @@ thumbs.db
 node_modules/
 backup/
 log/
+reports/
