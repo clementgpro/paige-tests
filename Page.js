@@ -2,7 +2,8 @@ var Page = require('be-paige').Page;
 
 var Forms = require('be-paige').components.form;
 
-var expect = require('chai').expect;
+var chai = require('chai');
+var expect = chai.expect;
 
 var Login = Page.extend({
   pageRoot: '/customer/account/login/',
@@ -41,7 +42,9 @@ var Login = Page.extend({
 
   verifyPrice: function() {
     return this.whenDisplayed(this.selectors.pricing).then(function() {
-      console.log(this.find(this.selectors.pricing)[0]);
+      this.find(this.selectors.pricing).getText().then(function(innerText) {
+        expect(innerText).to.contain('$35.00');
+      });
     }.bind(this));
   }
 

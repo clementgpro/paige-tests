@@ -1,8 +1,9 @@
 var bescribe = require('be-paige/bescribe');
 var Page = require('../Page.js');
+var moment = require('moment');
 
 var config = {
-  address: 'https://www.glassful.com/',
+  address: 'https://www.glassful.com',
   webdriver: {
     address: 'http://localhost:4444/wd/hub',
     config: {
@@ -12,14 +13,15 @@ var config = {
   }
 };
 
-bescribe("Some description", config, function(context, describe, it) {
-  describe("My Test Page", function() {
-    it("has elements on it's page", function() {
+console.log(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
+bescribe("Batch tasks", config, function(context, describe, it) {
+  describe("Verify", function() {
+    it("Welcome box price is equal to $35", function() {
       context.Page.build()
-      .redirectTo(Page)
-      .completeLoginForm()
-      .submitLoginForm()
-      .verifyPrice();
+        .redirectTo(Page)
+        .completeLoginForm()
+        .submitLoginForm()
+        .verifyPrice();
     });
 
     // More it() functions can go here
