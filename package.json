@@ -5,7 +5,8 @@
 	"private": true,
 	"dependencies": {
 		"be-paige": "0.3.2",
-		"chai": "1.9.1"
+		"chai": "1.9.1",
+		"mocha": "*"
 	},
 	"scripts": {
 		"test": "./node_modules/.bin/mocha --recursive -R xunit test/ > reports/test-reports.xml"
