@@ -1,5 +1,5 @@
 var bescribe = require('be-paige/bescribe');
-var Page = require('../Page.js');
+var Page = require('../../lib/login/index.js');
 
 var config = {
   address: 'https://www.glassful.com',
