@@ -43,7 +43,7 @@ var Login = Page.extend({
   verifyPrice: function() {
     return this.whenDisplayed(this.selectors.pricing).then(function() {
       this.find(this.selectors.pricing).getText().then(function(innerText) {
-        expect(innerText).to.contain('$36.00');
+        expect(innerText).to.contain('$35.00');
       });
     }.bind(this));
   }
