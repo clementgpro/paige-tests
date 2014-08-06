@@ -29,10 +29,10 @@ var Login = Page.extend({
     }
   },
 
-  completeLoginForm: function() {
+  completeLoginForm: function(email, password) {
     return this.enterInformation('loginForm', {
-      emailField: 'test@yopmail.fr',
-      passwordField: 'password'
+      emailField: email,
+      passwordField: password
     });
   },
 
