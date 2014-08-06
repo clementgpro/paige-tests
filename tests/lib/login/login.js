@@ -6,7 +6,7 @@ var chai = require('chai');
 var expect = chai.expect;
 
 var Login = Page.extend({
-  pageRoot: '/customer/account/login/',
+  pageRoot: '/glassful/current/index.php/customer/account/login/',
 
   selectors: {
     pricing: '.txt-box-pricing.scoutcondensedregular'

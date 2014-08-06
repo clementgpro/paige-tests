@@ -3,7 +3,7 @@ var LoginPage = require('../../lib/login/login.js');
 var MonthlyBoxPage = require('../../lib/monthly-box/monthly-box.js');
 
 var config = {
-  address: 'https://www.glassful.com',
+  address: 'http://happy.pixafy.com',
   webdriver: {
     address: 'http://localhost:4444/wd/hub',
     config: {
@@ -16,19 +16,20 @@ var config = {
 bescribe("Batch tasks", config, function(context, describe, it) {
   // Login tests
   describe("Login", function() {
-    
+
     it("login well", function() {
       context.Page.build()
         .redirectTo(LoginPage)
-        .completeLoginForm('test@yopmail.fr', 'password')
+        .completeLoginForm('glassful.test@yopmail.com', 'password')
         .submitLoginForm()
-        .switchTo(MonthlyBoxPage).onPage();
+        .switchTo(MonthlyBoxPage)
+        .onPage();
     });
 
     it("password does not exists", function() {
       context.Page.build()
         .redirectTo(LoginPage)
-        .completeLoginForm('test@yopmail.fr', null)
+        .completeLoginForm('glassful.test@yopmail.com', null)
         .submitLoginForm()
         .onPage();
     });
@@ -43,16 +44,4 @@ bescribe("Batch tasks", config, function(context, describe, it) {
 
   });
 
-  // Homepage tests
-  describe("Promo prices verifications", function() {
-    it("Welcome box price is equal to $35", function() {
-      context.Page.build()
-        .redirectTo(LoginPage)
-        .completeLoginForm('test@yopmail.fr', 'password')
-        .submitLoginForm()
-        .verifyPrice();
-    });
-  });
-
-  // More describe() functions can go here
 });
