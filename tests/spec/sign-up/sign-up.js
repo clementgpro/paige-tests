@@ -5,7 +5,7 @@ var MonthlyBoxPage = require('../../lib/monthly-box/monthly-box.js');
 var CreateAccountPage = require('../../lib/customer/account/create.js');
 
 var config = {
-  address: 'http://happy.pixafy.com',
+  address: 'http://happy.pixafy.com/glassful/current/index.php',
   webdriver: {
     address: 'http://localhost:4444/wd/hub',
     config: {

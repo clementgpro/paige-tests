@@ -1,7 +1,7 @@
 var Page = require('be-paige').Page,
 
 	Customer = Page.extend({
-		pageRoot: '/glassful/current/index.php/customer/'
+		pageRoot: '/customer/account/'
 	});
 
 module.exports = Customer;

@@ -3,7 +3,7 @@ var LoginPage = require('../../lib/login/login.js');
 var MonthlyBoxPage = require('../../lib/monthly-box/monthly-box.js');
 
 var config = {
-  address: 'http://happy.pixafy.com',
+  address: 'http://happy.pixafy.com/glassful/current/index.php',
   webdriver: {
     address: 'http://localhost:4444/wd/hub',
     config: {
@@ -17,7 +17,7 @@ bescribe("Batch tasks", config, function(context, describe, it) {
   // Login tests
   describe("Login", function() {
 
-    it("login well", function() {
+    it("login successfully", function() {
       context.Page.build()
         .redirectTo(LoginPage)
         .completeLoginForm('glassful.test@yopmail.com', 'password')
@@ -29,7 +29,7 @@ bescribe("Batch tasks", config, function(context, describe, it) {
     it("password does not exists", function() {
       context.Page.build()
         .redirectTo(LoginPage)
-        .completeLoginForm('glassful.test@yopmail.com', null)
+        .completeLoginForm('glassful.test@yopmail.com', '')
         .submitLoginForm()
         .onPage();
     });

@@ -3,7 +3,7 @@ var Page = require('be-paige').Page,
 	Forms = require('be-paige').components.form,
 
 	TheQuiz = Page.extend({
-		pageRoot: '/glassful/current/index.php/the-quiz/',
+		pageRoot: '/the-quiz/',
 
 		forms: {
 			quizForm: {

@@ -1,53 +1,60 @@
-var Page = require('be-paige').Page;
+var Page = require('be-paige').Page,
 
-var Forms = require('be-paige').components.form;
+  Forms = require('be-paige').components.form,
 
-var chai = require('chai');
-var expect = chai.expect;
+  chai = require('chai'),
+  expect = chai.expect,
 
-var Login = Page.extend({
-  pageRoot: '/glassful/current/index.php/customer/account/login/',
+  Login = Page.extend({
+    pageRoot: '/customer/account/login/',
 
-  selectors: {
-    pricing: '.txt-box-pricing.scoutcondensedregular'
-  },
-
-  forms: {
-    loginForm: {
-      context: '.main #login-form',
-      submit: '#send2',
-      inputs: {
-        emailField: {
-          selector: '.main #email',
-          type: 'text'
-        },
-        passwordField: {
-          selector: '.main #pass',
-          type: 'text'
+    forms: {
+      loginForm: {
+        context: '.main #login-form',
+        submit: '#send2',
+        inputs: {
+          emailField: {
+            selector: '.main #email',
+            type: 'text'
+          },
+          passwordField: {
+            selector: '.main #pass',
+            type: 'text'
+          }
         }
       }
-    }
-  },
+    },
 
-  completeLoginForm: function(email, password) {
-    return this.enterInformation('loginForm', {
-      emailField: email,
-      passwordField: password
-    });
-  },
+    onPage: function() {
+      this.whenDisplayed(this.forms.loginForm.context).then(function() {
+        this._super([
+          this.forms.loginForm.inputs.emailField.selector,
+          this.forms.loginForm.inputs.passwordField.selector
+        ]);
+      }.bind(this));
 
-  submitLoginForm: function() {
-    return this.submitForm('loginForm');
-  },
+      return this;
+    },
 
-  verifyPrice: function() {
-    return this.whenDisplayed(this.selectors.pricing).then(function() {
-      this.find(this.selectors.pricing).getText().then(function(innerText) {
-        expect(innerText).to.contain('$35.00');
+    completeLoginForm: function(email, password) {
+      return this.enterInformation('loginForm', {
+        emailField: email,
+        passwordField: password
       });
-    }.bind(this));
-  }
+    },
 
-}).with(Forms);
+    submitLoginForm: function() {
+      return this.submitForm('loginForm');
+    },
+
+    verifyPrice: function() {
+      return this.whenDisplayed(this.selectors.pricing).then(function() {
+        this.find(this.selectors.pricing).getText().then(function(innerText) {
+          expect(innerText).to.contain('$35.00');
+        });
+      }.bind(this));
+    }
+
+  }).with(Forms);
 
 module.exports = Login;
