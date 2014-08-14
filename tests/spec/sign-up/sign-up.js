@@ -27,10 +27,10 @@ bescribe("Sign up", config, function(context, describe, it) {
         .completeSignUpForm(
           'glassful',
           'test',
-          'glassful.test' + new Date().getTime() + '@yopmail.com',
+          'glassful.test.sign-up' + new Date().getTime() + '@yopmail.com',
           'password')
         .submitSignUpForm()
-        // we are redirected to the monthly-box pag
+        // we are redirected to the monthly-box page
         .switchTo(MonthlyBoxPage)
         .onPage();
     });

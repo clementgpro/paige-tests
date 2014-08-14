@@ -4,7 +4,7 @@ var Page = require('be-paige').Page,
 		pageRoot: '/monthly-box/',
 
 		selectors: {
-			blocWelcome: '.welcome-box.scoutregular.clear-box'
+			blocWelcome: '.clear-box'
 		},
 
 		onPage: function() {

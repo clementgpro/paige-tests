@@ -1,6 +1,7 @@
 var bescribe = require('be-paige/bescribe');
 var LoginPage = require('../../../lib/login/login.js');
 var CustomerAccountEditPage = require('../../../lib/customer/account/edit.js');
+var CustomerAccountPage = require('../../../lib/customer/customer.js');
 
 var config = {
   address: 'http://happy.pixafy.com/glassful/current/index.php',
@@ -17,7 +18,6 @@ var customerAccountEditContext;
 
 bescribe("Edit account information", config, function(context, describe, it) {
 
-
   beforeEach(function() {
     customerAccountEditContext = context.Page.build().redirectTo(LoginPage)
       .completeLoginForm('glassful.test@yopmail.com', 'password')
@@ -27,25 +27,31 @@ bescribe("Edit account information", config, function(context, describe, it) {
 
   describe("Edit first name", function() {
     it("Empty", function() {
-      customerAccountEditContext.completeEditForm('', 'new last name', 'glassful.newemail@yopmail.com')
+      customerAccountEditContext.completeEditForm('', 'new last name', 'glassful.test@yopmail.com')
         .submitEditForm()
         .onPage();
     });
 
     it("Not empty", function() {
-      customerAccountEditContext.completeEditForm('new first name', 'new last name', 'glassful.newemail@yopmail.com');
+      customerAccountEditContext.completeEditForm('new first name', 'new last name', 'glassful.test@yopmail.com')
+        .submitEditForm()
+        .switchTo(CustomerAccountPage)
+        .onPage();
     });
   });
 
   describe("Edit last name", function() {
     it("Empty", function() {
-      customerAccountEditContext.completeEditForm('new first name', '', 'glassful.newemail@yopmail.com')
+      customerAccountEditContext.completeEditForm('new first name', '', 'glassful.test@yopmail.com')
         .submitEditForm()
         .onPage();
     });
 
     it("Not empty", function() {
-      customerAccountEditContext.completeEditForm('new first name', 'new last name', 'glassful.newemail@yopmail.com');
+      customerAccountEditContext.completeEditForm('new first name', 'new last name', 'glassful.test@yopmail.com')
+        .submitEditForm()
+        .switchTo(CustomerAccountPage)
+        .onPage();
     });
   });
 
@@ -56,9 +62,19 @@ bescribe("Edit account information", config, function(context, describe, it) {
         .onPage();
     });
 
-    it("Valid mail address", function() {
-      customerAccountEditContext.completeEditForm('new first name', 'new last name', 'glassful.newemail@yopmail.com');
+    it("Existing mail address", function() {
+      customerAccountEditContext.completeEditForm('new first name', 'new last name', 'glassful.newemail@yopmail.com')
+        .submitEditForm()
+        .onPage();
     });
+
+    // TODO
+    // it("New mail address", function() {
+    //   customerAccountEditContext.completeEditForm('new first name', 'new last name', 'glassful.test.changeemailadress' + new Date().getTime() + '@yopmail.com')
+    //     .submitEditForm()
+    //     .switchTo(CustomerAccountPage)
+    //     .onPage();
+    // });
   });
 
 });
