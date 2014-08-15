@@ -15,22 +15,30 @@ var config = {
   }
 };
 
+var signUpPageContext;
+
 bescribe("Sign up", config, function(context, describe, it) {
+
+  // go to the end of the quiz before each test
+  beforeEach(function() {
+    signUpPageContext = context.Page.build()
+      .redirectTo(TheQuizPage)
+      .goEndQuiz()
+      .clickYesShippingUsa()
+      .submitQuizForm()
+      .switchTo(SignUpPage);
+  });
+
+
   describe("Accepted registration", function() {
     it("Sign up successfully", function() {
-      context.Page.build()
-        .redirectTo(TheQuizPage)
-        .goEndQuiz()
-        .clickYesShippingUsa()
-        .submitQuizForm()
-        .switchTo(SignUpPage)
+      signUpPageContext
         .completeSignUpForm(
           'glassful',
           'test',
           'glassful.test.sign-up' + new Date().getTime() + '@yopmail.com',
           'password')
         .submitSignUpForm()
-        // we are redirected to the monthly-box page
         .switchTo(MonthlyBoxPage)
         .onPage();
     });
@@ -38,12 +46,7 @@ bescribe("Sign up", config, function(context, describe, it) {
 
   describe("Refused registration", function() {
     it("Account already exists", function() {
-      context.Page.build()
-        .redirectTo(TheQuizPage)
-        .goEndQuiz()
-        .clickYesShippingUsa()
-        .submitQuizForm()
-        .switchTo(SignUpPage)
+      signUpPageContext
         .completeSignUpForm(
           'glassful',
           'test',

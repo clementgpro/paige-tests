@@ -13,13 +13,19 @@ var config = {
   }
 };
 
+var loginPageContext;
+
 bescribe("Batch tasks", config, function(context, describe, it) {
   // Login tests
   describe("Login", function() {
 
+    beforeEach(function() {
+      loginPageContext = context.Page.build()
+        .redirectTo(LoginPage);
+    });
+
     it("login successfully", function() {
-      context.Page.build()
-        .redirectTo(LoginPage)
+      loginPageContext
         .completeLoginForm('glassful.test@yopmail.com', 'password')
         .submitLoginForm()
         .switchTo(MonthlyBoxPage)
@@ -27,16 +33,14 @@ bescribe("Batch tasks", config, function(context, describe, it) {
     });
 
     it("password does not exists", function() {
-      context.Page.build()
-        .redirectTo(LoginPage)
+      loginPageContext
         .completeLoginForm('glassful.test@yopmail.com', '')
         .submitLoginForm()
         .onPage();
     });
 
     it("account does not exist", function() {
-      context.Page.build()
-        .redirectTo(LoginPage)
+      loginPageContext
         .completeLoginForm('doesnotexist@doesnotexists.fr', 'doesnotexists')
         .submitLoginForm()
         .onPage();
