@@ -32,6 +32,12 @@ var Page = require('be-paige').Page,
 			return this;
 		},
 
+		clickYesShippingUsa: function() {
+			return this.enterInformation('quizForm', {
+				radioShippingUsaYes: true
+			});
+		},
+
 		clickNextButton: function() {
 			this.whenDisplayed(this.selectors.buttonNext).then(function() {
 				this.find(this.selectors.buttonNext).click();
@@ -44,12 +50,6 @@ var Page = require('be-paige').Page,
 				this.clickNextButton();
 			}
 			return this;
-		},
-
-		clickYesShippingUsa: function() {
-			return this.enterInformation('quizForm', {
-				radioShippingUsaYes: true
-			});
 		},
 
 		submitQuizForm: function() {
