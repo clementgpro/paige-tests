@@ -43,6 +43,16 @@ var theQuiz = require('../the-quiz/the-quiz.js'),
 
     submitSignUpForm: function() {
       return this.submitForm('signUpForm');
+    },
+
+    /** 
+      Create an account with this format 'glassful.test.sign-up' & <date> & '@yopmail.com' and password as password.
+      @returns the string of email account 
+    **/
+    createNewAccount: function(email) {
+      this.completeSignUpForm('glassful', 'test', email, 'password');
+      this.submitSignUpForm();
+      return this;
     }
 
   }).with(theQuiz, Forms);

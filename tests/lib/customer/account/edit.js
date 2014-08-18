@@ -23,7 +23,27 @@ var Page = require('be-paige').Page,
 					emailAddressTextField: {
 						selector: '#email',
 						type: 'text'
-					}
+					},
+
+					changePasswordCheckBox: {
+						selector: '#change_password',
+						type: 'custom checkbox'
+					},
+
+					currentPasswordTextField: {
+						selector: '#current_password',
+						type: 'text'
+					},
+
+					newPasswordTextField: {
+						selector: '#password',
+						type: 'text'
+					},
+
+					confirmNewPasswordTextField: {
+						selector: '#confirmation',
+						type: 'text'
+					},
 				}
 			}
 		},
@@ -46,6 +66,26 @@ var Page = require('be-paige').Page,
 				firstNameTextField: firstName,
 				lastNameTextField: lastName,
 				emailAddressTextField: email
+			});
+		},
+
+		// password
+		fillInCustomCheckbox: function($form, selector, data) {
+			$form.find(this.forms.editForm.inputs.changePasswordCheckBox.selector).click();
+			return this;
+		},
+
+		showPasswordForm: function() {
+			return this.enterInformation('editForm', {
+				changePasswordCheckBox: true
+			});
+		},
+
+		completePasswordInformation: function(currentPassword, newPassword, confirmNewPassword) {
+			return this.enterInformation('editForm', {
+				currentPasswordTextField: currentPassword,
+				newPasswordTextField: newPassword,
+				confirmNewPasswordTextField: confirmNewPassword
 			});
 		},
 

@@ -4,16 +4,7 @@ var SignUpPage = require('../../lib/sign-up/sign-up.js');
 var MonthlyBoxPage = require('../../lib/monthly-box/monthly-box.js');
 var CreateAccountPage = require('../../lib/customer/account/create.js');
 
-var config = {
-  address: 'http://happy.pixafy.com/glassful/current/index.php',
-  webdriver: {
-    address: 'http://localhost:4444/wd/hub',
-    config: {
-      platform: 'MAC',
-      browserName: 'chrome'
-    }
-  }
-};
+var config = require('../config/config.js');
 
 var signUpPageContext;
 
@@ -33,12 +24,7 @@ bescribe("Sign up", config, function(context, describe, it) {
   describe("Accepted registration", function() {
     it("Sign up successfully", function() {
       signUpPageContext
-        .completeSignUpForm(
-          'glassful',
-          'test',
-          'glassful.test.sign-up' + new Date().getTime() + '@yopmail.com',
-          'password')
-        .submitSignUpForm()
+        .createNewAccount('glassful.test.sign-up' + new Date().getTime() + '@yopmail.com')
         .switchTo(MonthlyBoxPage)
         .onPage();
     });
@@ -47,12 +33,7 @@ bescribe("Sign up", config, function(context, describe, it) {
   describe("Refused registration", function() {
     it("Account already exists", function() {
       signUpPageContext
-        .completeSignUpForm(
-          'glassful',
-          'test',
-          'glassful.test@yopmail.com',
-          'password')
-        .submitSignUpForm()
+        .createNewAccount('glassful.test@yopmail.com')
         .switchTo(CreateAccountPage)
         .onPage();
     });
