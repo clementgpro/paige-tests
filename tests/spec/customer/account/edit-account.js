@@ -1,12 +1,14 @@
-/** imports **/
+// Imports
 var bescribe = require('be-paige/bescribe');
 var LoginPage = require('../../../lib/login/login.js');
 var CustomerAccountEditPage = require('../../../lib/customer/account/edit.js');
 var CustomerAccountPage = require('../../../lib/customer/customer.js');
 var TheQuizPage = require('../../../lib/the-quiz/the-quiz.js');
 var SignUpPage = require('../../../lib/sign-up/sign-up.js');
-var config = require('../../config/config.js');
+var common = require('../../common/common.js');
+var config = common.config;
 
+// Global variables
 var customerAccountEditContext;
 var emailAccount = 'glassful.test.sign-up' + new Date().getTime() + '@yopmail.com';
 var passwordAccount = 'password';
@@ -24,17 +26,21 @@ bescribe("Edit account information of " + emailAccount, config, function(context
         .clickYesShippingUsa()
         .submitQuizForm()
         .switchTo(SignUpPage)
-        .createNewAccount(emailAccount);
+        .createNewAccount(emailAccount)
+        .done();
       isAccountCreated = true;
     }
 
     // login
-    customerAccountEditContext = context.Page.build().redirectTo(LoginPage)
+    customerAccountEditContext = context.Page.build()
+      .redirectTo(LoginPage)
       .completeLoginForm(emailAccount, passwordAccount)
       .submitLoginForm()
       .redirectTo(CustomerAccountEditPage);
+
   });
 
+  /* First name */
   describe("Edit first name", function() {
     it("Empty", function() {
       customerAccountEditContext.completeEditForm('', 'new last name', emailAccount)
@@ -50,6 +56,7 @@ bescribe("Edit account information of " + emailAccount, config, function(context
     });
   });
 
+  /* Last name */
   describe("Edit last name", function() {
     it("Empty", function() {
       customerAccountEditContext.completeEditForm('new first name', '', emailAccount)
@@ -65,6 +72,7 @@ bescribe("Edit account information of " + emailAccount, config, function(context
     });
   });
 
+  /* Password */
   describe("Edit password", function() {
 
     it("Wrong current", function() {
@@ -103,6 +111,7 @@ bescribe("Edit account information of " + emailAccount, config, function(context
 
   });
 
+  /* Mail address */
   describe("Edit mail address", function() {
     it("Invalid mail address", function() {
       customerAccountEditContext.completeEditForm('new first name', 'new last name', 'invalidyopmail.com')

@@ -1,16 +1,20 @@
+// Imports
 var bescribe = require('be-paige/bescribe');
 var TheQuizPage = require('../../lib/the-quiz/the-quiz.js');
 var SignUpPage = require('../../lib/sign-up/sign-up.js');
 var MonthlyBoxPage = require('../../lib/monthly-box/monthly-box.js');
 var CreateAccountPage = require('../../lib/customer/account/create.js');
+var common = require('../../common/common.js');
+var config = common.config;
+var account = common.account;
 
-var config = require('../config/config.js');
-
+// Global variables
 var signUpPageContext;
 
+// Tests
 bescribe("Sign up", config, function(context, describe, it) {
 
-  // go to the end of the quiz before each test
+  // Before each test, take the quizz and go the signup page
   beforeEach(function() {
     signUpPageContext = context.Page.build()
       .redirectTo(TheQuizPage)
@@ -19,7 +23,6 @@ bescribe("Sign up", config, function(context, describe, it) {
       .submitQuizForm()
       .switchTo(SignUpPage);
   });
-
 
   describe("Accepted registration", function() {
     it("Sign up successfully", function() {
@@ -33,7 +36,7 @@ bescribe("Sign up", config, function(context, describe, it) {
   describe("Refused registration", function() {
     it("Account already exists", function() {
       signUpPageContext
-        .createNewAccount('glassful.test@yopmail.com')
+        .createNewAccount(account.email)
         .switchTo(CreateAccountPage)
         .onPage();
     });

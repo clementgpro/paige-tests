@@ -1,22 +1,27 @@
+// Imports
 var bescribe = require('be-paige/bescribe');
 var LoginPage = require('../../lib/login/login.js');
 var MonthlyBoxPage = require('../../lib/monthly-box/monthly-box.js');
-var config = require('../config/config.js');
+var common = require('../../common/common.js');
+var config = common.config;
+var account = common.account;
 
+// Global variables
 var loginPageContext;
 
+// Tests
 bescribe("Batch tasks", config, function(context, describe, it) {
-  // Login tests
+
   describe("Login", function() {
 
+    // Before each tests redirect to the login page
     beforeEach(function() {
-      loginPageContext = context.Page.build()
-        .redirectTo(LoginPage);
+      loginPageContext = context.Page.build().redirectTo(LoginPage);
     });
 
     it("login successfully", function() {
       loginPageContext
-        .completeLoginForm('glassful.test@yopmail.com', 'password')
+        .completeLoginForm(account.email, account.password)
         .submitLoginForm()
         .switchTo(MonthlyBoxPage)
         .onPage();
@@ -24,7 +29,7 @@ bescribe("Batch tasks", config, function(context, describe, it) {
 
     it("password does not exists", function() {
       loginPageContext
-        .completeLoginForm('glassful.test@yopmail.com', '')
+        .completeLoginForm(account.email, '')
         .submitLoginForm()
         .onPage();
     });

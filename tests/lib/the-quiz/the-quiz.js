@@ -9,12 +9,8 @@ var Page = require('be-paige').Page,
 			quizForm: {
 				context: '#quiz-form',
 				inputs: {
-					radioShippingUsaYes: {
+					shippingUsaYesRadioButton: {
 						selector: '.rdio-ny-yes',
-						type: 'custom radio'
-					},
-					radioShippingUsaNo: {
-						selector: '.rdio-ny-no',
 						type: 'custom radio'
 					}
 				}
@@ -34,7 +30,7 @@ var Page = require('be-paige').Page,
 
 		clickYesShippingUsa: function() {
 			return this.enterInformation('quizForm', {
-				radioShippingUsaYes: true
+				shippingUsaYesRadioButton: true
 			});
 		},
 
