@@ -1,18 +1,18 @@
 // Imports
-var bescribe = require('be-paige/bescribe');
-var TheQuizPage = require('../../lib/the-quiz/the-quiz.js');
-var SignUpPage = require('../../lib/sign-up/sign-up.js');
-var MonthlyBoxPage = require('../../lib/monthly-box/monthly-box.js');
-var CreateAccountPage = require('../../lib/customer/account/create.js');
-var common = require('../../common/common.js');
-var config = common.config;
-var account = common.account;
+var bescribe = require('be-paige/bescribe'),
+  common = require('../common/common.js'),
+  data = require('../common/data.js'),
+  TheQuizPage = require('../../lib/the-quiz/the-quiz.js'),
+  SignUpPage = require('../../lib/sign-up/sign-up.js'),
+  MonthlyBoxPage = require('../../lib/monthly-box/monthly-box.js'),
+  CreateAccountPage = require('../../lib/customer/account/create.js'),
+  SignUpHelper = require('./sign-upHelper.js');
 
 // Global variables
 var signUpPageContext;
 
 // Tests
-bescribe("Sign up", config, function(context, describe, it) {
+bescribe("Sign up", common.config, function(context, describe, it) {
 
   // Before each test, take the quizz and go the signup page
   beforeEach(function() {
@@ -25,18 +25,18 @@ bescribe("Sign up", config, function(context, describe, it) {
   });
 
   describe("Accepted registration", function() {
-    it("Sign up successfully", function() {
+    it("Should sign up successfully", function() {
       signUpPageContext
-        .createNewAccount('glassful.test.sign-up' + new Date().getTime() + '@yopmail.com')
+        .createNewAccount(data.newAccount)
         .switchTo(MonthlyBoxPage)
         .onPage();
     });
   });
 
   describe("Refused registration", function() {
-    it("Account already exists", function() {
+    it("Should refused the sign-up because the account already exists", function() {
       signUpPageContext
-        .createNewAccount(account.email)
+        .createNewAccount(data.account)
         .switchTo(CreateAccountPage)
         .onPage();
     });

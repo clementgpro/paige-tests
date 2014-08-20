@@ -32,7 +32,7 @@ var theQuiz = require('../the-quiz/the-quiz.js'),
       }
     },
 
-    completeSignUpForm: function(firstName, lastName, email, password) {
+    _completeSignUpForm: function(firstName, lastName, email, password) {
       return this.enterInformation('signUpForm', {
         firstNameTextField: firstName,
         lastNameTextField: lastName,
@@ -41,14 +41,14 @@ var theQuiz = require('../the-quiz/the-quiz.js'),
       });
     },
 
-    submitSignUpForm: function() {
+    _submitSignUpForm: function() {
       return this.submitForm('signUpForm');
     },
 
     
-    createNewAccount: function(email) {
-      this.completeSignUpForm('glassful', 'test', email, 'password');
-      this.submitSignUpForm();
+    createNewAccount: function(account) {
+      this._completeSignUpForm('glassful', 'test', account.email, account.password);
+      this._submitSignUpForm();
       return this;
     }
 

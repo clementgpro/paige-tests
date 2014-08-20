@@ -8,9 +8,5 @@ module.exports = {
 				browserName: 'chrome'
 			}
 		}
-	},
-	account: {
-		email: 'glassful.test@yopmail.fr',
-		password: 'password'
 	}
 };
