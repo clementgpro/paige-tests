@@ -16,8 +16,7 @@ bescribe("Edit account information of " + data.newAccount.email, common.config, 
   beforeEach(function() {
     // create a new account (one time and only one time)
     if (!customerAccountEditContext) {
-      var page = context.Page.build();
-      SignUpHelper.signUp(page, data.newAccount);
+      SignUpHelper.signUp(context.Page.build(), data.newAccount);
     }
     // login the user with new account
     customerAccountEditContext = LoginHelper.login(context.Page.build(), data.newAccount).redirectTo(CustomerAccountEditPage);

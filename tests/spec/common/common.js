@@ -5,7 +5,7 @@ module.exports = {
 			address: 'http://localhost:4444/wd/hub',
 			config: {
 				platform: 'MAC',
-				browserName: 'chrome'
+				browserName: 'firefox'
 			}
 		}
 	}

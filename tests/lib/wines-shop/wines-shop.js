@@ -17,6 +17,9 @@ var Page = require('be-paige').Page,
 			sparklingCheckBox: '#filter-sparkling',
 			whiteCheckBox: '#filter-white',
 
+			// varietal
+			oneVarietalOption: '.pix-selectable-item:eq(1)',
+
 			// Wines
 			firstWine: '.item.last',
 			quantityTextField: '#qty',
@@ -75,6 +78,17 @@ var Page = require('be-paige').Page,
 			this.whenDisplayed(this.selectors.firstWine).then(function() {
 				this.find(this.selectors.firstWine).click();
 			}.bind(this));
+			return this;
+		},
+
+		chooseFirstVarietal: function() {
+			// the combo is only displayed when we click on the a tag which is the trigger
+			// that's why we need to click on it just before select the value from the combo
+			this.whenDisplayed('.pix-selectable-trigger').then(function() {
+				this.find(this.selectors.cardComboTrigger).click();
+				this.find(this.selectors.oneVarietalOption).click();
+			}.bind(this));
+
 			return this;
 		},
 

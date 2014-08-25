@@ -18,5 +18,7 @@ function(page, accountToCreate) {
 		.createNewAccount(accountToCreate)
 		.switchTo(MonthlyBoxPage)
 		.onPage()
-		.done();
+		// TODO do it the right way because it's a huge hack 
+		// I should use .done() but the session is pending and it doesn't go to the if and so the quit()
+		._session.quit();
 };
