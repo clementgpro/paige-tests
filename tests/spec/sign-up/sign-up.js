@@ -27,7 +27,7 @@ bescribe("Sign up", common.config, function(context, describe, it) {
   describe("Accepted registration", function() {
     it("Should sign up successfully", function() {
       signUpPageContext
-        .createNewAccount(data.newAccount)
+        .createNewAccount(data.createNewAccount())
         .switchTo(MonthlyBoxPage)
         .onPage();
     });

@@ -1,9 +1,9 @@
 // Imports
 var bescribe = require('be-paige/bescribe');
-var LoginPage = require('../../lib/login/login.js');
+var LoginPage = require('../../../../lib/customer/account/login.js');
 var LoginHelper = require('./loginHelper.js');
-var common = require('../common/common.js');
-var data = require('../common/data.js');
+var common = require('../../../common/common.js');
+var data = require('../../../common/data.js');
 
 // Global variables
 var pageContext;
@@ -25,6 +25,7 @@ bescribe("Batch tasks", common.config, function(context, describe, it) {
     it("Should refused the log in because the password is empty", function() {
       pageContext
         .redirectTo(LoginPage)
+        .onPage()
         .completeLoginForm(data.account.email, '')
         .submitLoginForm()
         .onPage();
@@ -33,6 +34,7 @@ bescribe("Batch tasks", common.config, function(context, describe, it) {
     it("Should refused the log in because the account does not exist", function() {
       pageContext
         .redirectTo(LoginPage)
+        .onPage()
         .completeLoginForm('doesnotexist@doesnotexists.fr', 'doesnotexists')
         .submitLoginForm()
         .onPage();

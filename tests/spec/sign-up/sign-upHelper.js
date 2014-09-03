@@ -10,15 +10,13 @@ exports.signUp =
  * @return void
  */
 function(page, accountToCreate) {
-	return page.redirectTo(TheQuizPage)
+	return page
+		.redirectTo(TheQuizPage)
 		.goEndQuiz()
 		.clickYesShippingUsa()
 		.submitQuizForm()
 		.switchTo(SignUpPage)
 		.createNewAccount(accountToCreate)
 		.switchTo(MonthlyBoxPage)
-		.onPage()
-		// TODO do it the right way because it's a huge hack 
-		// I should use .done() but the session is pending and it doesn't go to the if and so the quit()
-		._session.quit();
+		.onPage();
 };

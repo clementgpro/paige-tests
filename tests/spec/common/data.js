@@ -3,8 +3,10 @@ module.exports = {
 		email: 'glassful.test@yopmail.com',
 		password: 'password'
 	},
-	newAccount: {
-		email: 'glassful.test.sign-up' + new Date().getTime() + '@yopmail.com',
-		password: 'password'
+	createNewAccount: function() {
+		return {
+			email: 'glassful.test.sign-up' + new Date().getTime() + '@yopmail.com',
+			password: 'password'
+		};
 	}
 };

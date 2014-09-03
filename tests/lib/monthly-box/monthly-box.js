@@ -1,4 +1,6 @@
+/* jshint expr:true */
 var Page = require('be-paige').Page,
+	expect = require('chai').expect,
 
 	MonthlyBox = Page.extend({
 		pageRoot: '/monthly-box/',
@@ -6,9 +8,12 @@ var Page = require('be-paige').Page,
 		selectors: {
 			blocWelcome: '.clear-box',
 
+			// subscriber bloc
+			bannerMonthBloc: '.collection-banner.monthly',
+			collectionWinesBloc: '.collection-wines.container',
+
 			// buttons
-			skipTheMonthButton: '.btn-skip-month',
-			resumeTheMonthButton: '.btn-resume-month'
+			subscribeButton: '.btn-subscribe.btn-green.btn-welcome.scoutcondensedregular'
 		},
 
 		onPage: function() {
@@ -22,32 +27,23 @@ var Page = require('be-paige').Page,
 		},
 
 		/**
-		 * Skip the current month.
-		 * @return {[object]} the context of the page
+		 * Subscribe.
+		 * @return {object} the context of the page
 		 */
-		skipTheMonth: function() {
-			if (this.exists(this.selectors.skipTheMonthButton)) {
-				this.whenDisplayed(this.selectors.skipTheMonthButton).then(function() {
-					this.find(this.selectors.skipTheMonthButton).click();
-				}.bind(this));
-			} else {
-				throw "You have already skip the month.";
-			}
+		clickSuscribeButton: function() {
+			this.whenDisplayed(this.selectors.subscribeButton).then(function() {
+				this.find(this.selectors.subscribeButton).click();
+			}.bind(this));
 			return this;
 		},
-
 		/**
-		 * Resume the current month.
-		 * @return {[object]} the context of the page
+		 * Verify that the user is a subscriber
+		 * @return {Boolean} true if the user is a subscriber
 		 */
-		resumeTheMonth: function() {
-			if (this.exists(this.selectors.resumeTheMonthButton)) {
-				this.whenDisplayed(this.selectors.resumeTheMonthButton).then(function() {
-					this.find(this.selectors.resumeTheMonthButton).click();
-				}.bind(this));
-			} else {
-				throw "You have already resume the month.";
-			}
+		verifySubscriber: function() {
+			this.exists(this.selectors.bannerMonthBloc).then(function(elementExists) {
+				expect(elementExists).to.be.true;
+			}.bind(this));
 			return this;
 		}
 	});

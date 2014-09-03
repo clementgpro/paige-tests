@@ -1,6 +1,6 @@
 // Imports
 var bescribe = require('be-paige/bescribe'),
-	LoginHelper = require('../login/loginHelper.js'),
+	LoginHelper = require('../customer/account/login/loginHelper.js'),
 	PurchaseHelper = require('../purchase/purchaseHelper.js'),
 	WineShopPage = require('../../lib/wines-shop/wines-shop.js'),
 	common = require('../common/common.js'),

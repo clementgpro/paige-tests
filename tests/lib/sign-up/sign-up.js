@@ -45,7 +45,6 @@ var theQuiz = require('../the-quiz/the-quiz.js'),
       return this.submitForm('signUpForm');
     },
 
-    
     createNewAccount: function(account) {
       this._completeSignUpForm('glassful', 'test', account.email, account.password);
       this._submitSignUpForm();

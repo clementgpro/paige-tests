@@ -1,5 +1,5 @@
-var LoginPage = require('../../lib/login/login.js');
-var MonthlyBoxPage = require('../../lib/monthly-box/monthly-box.js');
+var LoginPage = require('../../../../lib/customer/account/login.js');
+var MonthlyBoxPage = require('../../../../lib/monthly-box/monthly-box.js');
 
 exports.login =
 
@@ -13,6 +13,7 @@ function(page, account) {
 	if (!page) throw 'context needs to be defined';
 	return page
 		.redirectTo(LoginPage)
+		.onPage()
 		.completeLoginForm(account.email, account.password)
 		.submitLoginForm()
 		.switchTo(MonthlyBoxPage)

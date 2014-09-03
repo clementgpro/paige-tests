@@ -1,19 +1,19 @@
-var Page = require('be-paige').Page,
+var common = require('../../common/common.js'),
+	Page = require('be-paige').Page,
 
 	Create = Page.extend({
 		pageRoot: '/customer/account/create/',
 
-		selectors:{
-			blocCreate: '.account-create.standard'
+		selectors: {
+			signUpBox: '.page .sign-up-cntnt'
 		},
 
 		onPage: function() {
-			this.whenDisplayed(this.selectors.blocCreate).then(function() {
+			this.whenDisplayed(this.selectors.signUpBox).then(function() {
 				this._super([
-					this.selectors.blocCreate
+					this.selectors.signUpBox
 				]);
 			}.bind(this));
-
 			return this;
 		}
 	});

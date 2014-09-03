@@ -1,6 +1,6 @@
 // Imports
 var bescribe = require('be-paige/bescribe'),
-  LoginHelper = require('../../login/loginHelper.js'),
+  LoginHelper = require('../../customer/account/login/loginHelper.js'),
   CustomerAccountPage = require('../../../lib/customer/customer.js'),
   CustomerAccountEditPage = require('../../../lib/customer/account/edit.js'),
   TheQuizPage = require('../../../lib/the-quiz/the-quiz.js'),
@@ -10,28 +10,32 @@ var bescribe = require('be-paige/bescribe'),
 
 // Global variables
 var customerAccountEditContext;
+var account;
 
-bescribe("Edit account information of " + data.newAccount.email, common.config, function(context, describe, it) {
+bescribe("Edit account information", common.config, function(context, describe, it) {
 
   beforeEach(function() {
     // create a new account (one time and only one time)
-    if (!customerAccountEditContext) {
-      SignUpHelper.signUp(context.Page.build(), data.newAccount);
+    if (!account) {
+      account = data.createNewAccount();
+      // TODO do it the right way because it's a huge hack !!!
+      // I should use .done() but the session is pending and it doesn't go to the if and so the quit()
+      SignUpHelper.signUp(context.Page.build(), account)._session.quit();
     }
     // login the user with new account
-    customerAccountEditContext = LoginHelper.login(context.Page.build(), data.newAccount).redirectTo(CustomerAccountEditPage);
+    customerAccountEditContext = LoginHelper.login(context.Page.build(), account).redirectTo(CustomerAccountEditPage);
   });
 
   // First name
   describe("Edit first name", function() {
     it("Should not edit the first name because its empty", function() {
-      customerAccountEditContext.completeEditForm('', 'new last name', data.newAccount.email)
+      customerAccountEditContext.completeEditForm('', 'new last name', account.email)
         .submitEditForm()
         .onPage();
     });
 
     it("Should edit the first name because it's empty", function() {
-      customerAccountEditContext.completeEditForm('new first name', 'new last name', data.newAccount.email)
+      customerAccountEditContext.completeEditForm('new first name', 'new last name', account.email)
         .submitEditForm()
         .switchTo(CustomerAccountPage)
         .onPage();
@@ -41,13 +45,13 @@ bescribe("Edit account information of " + data.newAccount.email, common.config, 
   // Last name
   describe("Edit last name", function() {
     it("Should not edit the last name because its empty", function() {
-      customerAccountEditContext.completeEditForm('new first name', '', data.newAccount.email)
+      customerAccountEditContext.completeEditForm('new first name', '', account.email)
         .submitEditForm()
         .onPage();
     });
 
     it("Should edit the last name because it's empty", function() {
-      customerAccountEditContext.completeEditForm('new first name', 'new last name', data.newAccount.email)
+      customerAccountEditContext.completeEditForm('new first name', 'new last name', account.email)
         .submitEditForm()
         .switchTo(CustomerAccountPage)
         .onPage();
@@ -67,7 +71,7 @@ bescribe("Edit account information of " + data.newAccount.email, common.config, 
     it("Should not edit the password because the new has less than 6 characters", function() {
       customerAccountEditContext
         .showPasswordForm()
-        .completePasswordInformation(data.newAccount.password, 'less', 'less')
+        .completePasswordInformation(account.password, 'less', 'less')
         .submitEditForm()
         .onPage();
     });
@@ -75,7 +79,7 @@ bescribe("Edit account information of " + data.newAccount.email, common.config, 
     it("Should not edit the password because the new password and the confirmation one are not equal", function() {
       customerAccountEditContext
         .showPasswordForm()
-        .completePasswordInformation(data.newAccount.password, 'qwerty', 'azerty')
+        .completePasswordInformation(account.password, 'qwerty', 'azerty')
         .submitEditForm()
         .onPage();
     });
@@ -83,11 +87,11 @@ bescribe("Edit account information of " + data.newAccount.email, common.config, 
     it("Should edit the password because there are no errors", function() {
       customerAccountEditContext
         .showPasswordForm()
-        .completePasswordInformation(data.newAccount.password, 'newpassword', 'newpassword')
+        .completePasswordInformation(account.password, 'newpassword', 'newpassword')
         .submitEditForm()
         .switchTo(CustomerAccountPage)
         .onPage();
-      data.newAccount.password = 'newpassword';
+      account.password = 'newpassword';
     });
 
   });
@@ -107,7 +111,7 @@ bescribe("Edit account information of " + data.newAccount.email, common.config, 
     });
 
     it("Should edit the mail address because there are no errors", function() {
-      customerAccountEditContext.completeEditForm('new first name', 'new last name', 'new' + data.newAccount.email)
+      customerAccountEditContext.completeEditForm('new first name', 'new last name', 'new' + account.email)
         .submitEditForm()
         .switchTo(CustomerAccountPage)
         .onPage();
