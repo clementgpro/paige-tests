@@ -22,7 +22,7 @@ var Page = require('be-paige').Page,
 			oneVarietalCombo: '.pix-selectable.active.focus li:last',
 
 			// Wines
-			firstWine: '.item.last a',
+			firstWine: '.item.last [title=Clos\\ Bagatelle]',
 			quantityTextField: '#qty',
 			addToCartButton: '.button.btn-cart'
 		},
