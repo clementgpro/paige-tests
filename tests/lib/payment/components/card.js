@@ -69,8 +69,10 @@ var messages = require('../../common/messages.js'),
 		 * @return {this} the context
 		 */
 		clearCart: function() {
-			this.whenDisplayed(this.selectors.clearCartButton).then(function() {
-				this.find(this.selectors.clearCartButton).click();
+			this.exists(this.selectors.clearCartButton).then(function(elementExists) {
+                if(elementExists){
+                    this.find(this.selectors.clearCartButton).click();
+                }
 			}.bind(this));
 			return this;
 		},

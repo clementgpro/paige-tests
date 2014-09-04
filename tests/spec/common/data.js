@@ -8,5 +8,9 @@ module.exports = {
 			email: 'glassful.test.sign-up' + new Date().getTime() + '@yopmail.com',
 			password: 'password'
 		};
-	}
+	},
+    coupon:{
+        invalid:'wrongcode',
+        valid: 'BEPAIGETEST'
+    }
 };

@@ -15,7 +15,7 @@ var winePaymentContext;
 bescribe("Payment", common.config, function(context, describe, it) {
 	// Before each test, it needs to be logged in
 	beforeEach(function() {
-		winePaymentContext = LoginHelper.login(context.Page.build(), data.account).redirectTo(PaymentPage);
+		winePaymentContext = LoginHelper.login(context.Page.build(), data.account).redirectTo(PaymentPage).clearCart();
 	});
 
 	describe("Cart", function() {
@@ -35,17 +35,17 @@ bescribe("Payment", common.config, function(context, describe, it) {
 		it("Should refuse the coupon code", function() {
 			PurchaseHelper.purchase(winePaymentContext).redirectTo(PaymentPage);
 			winePaymentContext
-				.completeSubmitCouponForm('wrongcode')
+				.completeSubmitCouponForm(data.coupon.invalid)
 				.submitFormCouponForm()
-				.verifyCouponIsInvalid('wrongcode');
+				.verifyCouponIsInvalid(data.coupon.invalid);
 		});
 
 		it("Should accept the valid coupon code", function() {
 			PurchaseHelper.purchase(winePaymentContext).redirectTo(PaymentPage);
 			winePaymentContext
-				.completeSubmitCouponForm('BEPAIGETEST')
+				.completeSubmitCouponForm(data.coupon.valid)
 				.submitFormCouponForm()
-				.verifyCouponIsValid('BEPAIGETEST');
+				.verifyCouponIsValid(data.coupon.valid);
 		});
 	});
 
