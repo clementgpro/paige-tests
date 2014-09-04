@@ -1,5 +1,15 @@
-var common = require('../../common/common.js'),
+var selectors = require('../../common/selectors.js'),
+	messages = require('../../common/messages.js'),
 	Coupon = {
+		forms: {
+			couponCodeForm: {
+				context: '#discount-coupon-form',
+				submit: '.btn-white',
+				inputs: {
+					couponCodeTextField: '#coupon_code'
+				}
+			}
+		},
 
 		selectors: {
 			couponButton: '.btn-redeem-coupon.scoutregular'
@@ -13,7 +23,7 @@ var common = require('../../common/common.js'),
 		},
 
 		completeSubmitCouponForm: function(couponCode) {
-			this._clickCouponCode().whenDisplayed(this.forms.couponCodeForm.inputs.couponCodeTextField.selector).then(function() {
+			this._clickCouponCode().whenDisplayed(this.forms.couponCodeForm.inputs.couponCodeTextField).then(function() {
 				this.enterInformation('couponCodeForm', {
 					couponCodeTextField: couponCode
 				});
@@ -25,12 +35,12 @@ var common = require('../../common/common.js'),
 			return this.submitForm('couponCodeForm');
 		},
 
-		verifyCouponIsInvalid: function() {
-			return this.verifyContent(common.selectors.message, 'Coupon code "wrongcode" is not valid.');
+		verifyCouponIsInvalid: function(couponCode) {
+			return this.verifyContent(selectors.message, messages.payment.coupon.error(couponCode));
 		},
 
-		verifyCouponIsValid: function() {
-			return this.verifyContent(common.selectors.message, 'Coupon code "BEPAIGETEST" was applied.');
+		verifyCouponIsValid: function(couponCode) {
+			return this.verifyContent(selectors.message, messages.payment.coupon.success(couponCode));
 		}
 	};
 

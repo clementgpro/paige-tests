@@ -8,7 +8,6 @@ exports.pay = function(page) {
 		.submitBillingForm()
 		.completeCardForm('name', '4111111111111111', '123')
 		.submitCardForm()
-		.submitPayment()
 		.switchTo(SuccessPage)
 		.onPage();
 };

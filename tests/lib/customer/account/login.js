@@ -10,14 +10,8 @@ var Page = require('be-paige').Page,
                 context: '.main #login-form',
                 submit: '#send2',
                 inputs: {
-                    emailField: {
-                        selector: '.main #email',
-                        type: 'text'
-                    },
-                    passwordField: {
-                        selector: '.main #pass',
-                        type: 'text'
-                    }
+                    emailField: '.main #email',
+                    passwordField: '.main #pass'
                 }
             }
         },
@@ -25,8 +19,8 @@ var Page = require('be-paige').Page,
         onPage: function() {
             this.whenDisplayed(this.forms.loginForm.context).then(function() {
                 this._super([
-                    this.forms.loginForm.inputs.emailField.selector,
-                    this.forms.loginForm.inputs.passwordField.selector
+                    this.forms.loginForm.inputs.emailField,
+                    this.forms.loginForm.inputs.passwordField
                 ]);
             }.bind(this));
 

@@ -1,49 +1,22 @@
 var Page = require('be-paige').Page,
-
 	Forms = require('be-paige').components.form,
-
 	CustomerAccountEdit = Page.extend({
 		pageRoot: '/customer/account/edit/',
-
 		forms: {
 			editForm: {
 				context: '#form-validate',
 				submit: '#form-validate [type=submit]',
 				inputs: {
-					firstNameTextField: {
-						selector: '#firstname',
-						type: 'text'
-					},
-
-					lastNameTextField: {
-						selector: '#lastname',
-						type: 'text'
-					},
-
-					emailAddressTextField: {
-						selector: '#email',
-						type: 'text'
-					},
-
+					firstNameTextField: '#firstname',
+					lastNameTextField: '#lastname',
+					emailAddressTextField: '#email',
 					changePasswordCheckBox: {
 						selector: '#change_password',
 						type: 'custom checkbox'
 					},
-
-					currentPasswordTextField: {
-						selector: '#current_password',
-						type: 'text'
-					},
-
-					newPasswordTextField: {
-						selector: '#password',
-						type: 'text'
-					},
-
-					confirmNewPasswordTextField: {
-						selector: '#confirmation',
-						type: 'text'
-					},
+					currentPasswordTextField: '#current_password',
+					newPasswordTextField: '#password',
+					confirmNewPasswordTextField: '#confirmation'
 				}
 			}
 		},
@@ -52,9 +25,9 @@ var Page = require('be-paige').Page,
 			this.whenDisplayed(this.forms.editForm.context).then(function() {
 				this._super([
 					this.forms.editForm.submit,
-					this.forms.editForm.inputs.firstNameTextField.selector,
-					this.forms.editForm.inputs.lastNameTextField.selector,
-					this.forms.editForm.inputs.emailAddressTextField.selector
+					this.forms.editForm.inputs.firstNameTextField,
+					this.forms.editForm.inputs.lastNameTextField,
+					this.forms.editForm.inputs.emailAddressTextField
 				]);
 			}.bind(this));
 
@@ -69,7 +42,7 @@ var Page = require('be-paige').Page,
 			});
 		},
 
-		// password
+		// PASSWORD
 		fillInCustomCheckbox: function($form, selector, data) {
 			$form.find(this.forms.editForm.inputs.changePasswordCheckBox.selector).click();
 			return this;

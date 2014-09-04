@@ -1,8 +1,41 @@
 /* jshint expr:true */
-var expect = require('chai').expect,
+var messages = require('../../common/messages.js'),
+	expect = require('chai').expect,
 	CreditCard = {
-		constants: {
-			NEW_CREDIT_CARD: 'New Credit Card'
+		forms: {
+			cardForm: {
+				context: '#co-payment-form',
+				submit: '#co-payment-form button',
+				inputs: {
+					cardTypeComboTrigger: {
+						selector: '#co-payment-form .pix-selectable a',
+						type: 'trigger'
+					},
+					visaCardOption: {
+						selector: '.pix-selectable.active li:nth-child(3)',
+						type: 'custom option'
+					},
+					monthComboTrigger: {
+						selector: '.v-fix.exp-month a',
+						type: 'trigger'
+					},
+					januaryOption: {
+						selector: '.v-fix.exp-month li:nth-child(2)',
+						type: 'custom option'
+					},
+					yearComboTrigger: {
+						selector: '.v-fix.exp-year a',
+						type: 'trigger'
+					},
+					yearOption: {
+						selector: '.v-fix.exp-year li:nth-child(10)',
+						type: 'custom option'
+					},
+					cardHolderNameTextField: '#authorizenet_cc_owner',
+					cardNumberTextField: '#authorizenet_cc_number',
+					cvcTextField: '#authorizenet_cc_cid'
+				}
+			}
 		},
 
 		selectors: {
@@ -67,10 +100,17 @@ var expect = require('chai').expect,
 			});
 		},
 
+		/**
+		 * Complete the card form
+		 * @param cardHolderName
+		 * @param cardNumber
+		 * @param cvc
+		 * @returns {Object} the context
+		 */
 		completeCardForm: function(cardHolderName, cardNumber, cvc) {
 			this.whenNotDisplayed(this.selectors.coverCheckoutPayment).then(function() {
 				this.find(this.selectors.typeCardLabel).getText().then(function(innerText) {
-					if (innerText === this.constants.NEW_CREDIT_CARD) {
+					if (innerText === messages.payment.card.new_credit_card) {
 						this.enterInformation('cardForm', {
 							cardTypeComboTrigger: true,
 							visaCardOption: true,
@@ -90,9 +130,16 @@ var expect = require('chai').expect,
 			return this;
 		},
 
+		/**
+		 * Submit the card form.
+		 * @returns {Object} the context
+		 */
 		submitCardForm: function() {
-			return this.submitForm('cardForm');
-		},
+            this.whenNotDisplayed(this.selectors.coverCheckoutPayment).then(function() {
+			    this.submitForm('cardForm');
+            }.bind(this));
+            return this;
+		}
 
 	};
 

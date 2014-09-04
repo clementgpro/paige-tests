@@ -1,7 +1,5 @@
 var Page = require('be-paige').Page,
-
 	Forms = require('be-paige').components.form,
-
 	TheQuiz = Page.extend({
 		pageRoot: '/the-quiz/',
 
@@ -54,8 +52,6 @@ var Page = require('be-paige').Page,
 			}.bind(this));
 			return this;
 		}
-
-
 	}).with(Forms);
 
 module.exports = TheQuiz;

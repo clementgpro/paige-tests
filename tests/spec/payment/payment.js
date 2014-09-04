@@ -37,7 +37,7 @@ bescribe("Payment", common.config, function(context, describe, it) {
 			winePaymentContext
 				.completeSubmitCouponForm('wrongcode')
 				.submitFormCouponForm()
-				.verifyCouponIsInvalid();
+				.verifyCouponIsInvalid('wrongcode');
 		});
 
 		it("Should accept the valid coupon code", function() {
@@ -45,7 +45,7 @@ bescribe("Payment", common.config, function(context, describe, it) {
 			winePaymentContext
 				.completeSubmitCouponForm('BEPAIGETEST')
 				.submitFormCouponForm()
-				.verifyCouponIsValid();
+				.verifyCouponIsValid('BEPAIGETEST');
 		});
 	});
 
@@ -54,7 +54,7 @@ bescribe("Payment", common.config, function(context, describe, it) {
 			PurchaseHelper.purchase(winePaymentContext).redirectTo(PaymentPage);
 			winePaymentContext
 				.submitBillingForm()
-				.submitPayment()
+				.submitCardForm()
 				.onPage();
 		});
 

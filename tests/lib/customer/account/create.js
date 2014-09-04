@@ -1,9 +1,7 @@
-var common = require('../../common/common.js'),
-	Page = require('be-paige').Page,
-
+var Page = require('be-paige').Page,
 	Create = Page.extend({
-		pageRoot: '/customer/account/create/',
 
+		pageRoot: '/customer/account/create/',
 		selectors: {
 			signUpBox: '.page .sign-up-cntnt'
 		},

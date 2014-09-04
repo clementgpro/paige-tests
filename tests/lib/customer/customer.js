@@ -2,7 +2,8 @@
 var Page = require('be-paige').Page,
 	Forms = require('be-paige').components.form,
 	expect = require('chai').expect,
-	common = require('../common/common.js'),
+	messages = require('../common/messages.js'),
+	selectors = require('../common/selectors.js'),
 	Customer = Page.extend({
 		pageRoot: '/customer/account/',
 
@@ -18,7 +19,7 @@ var Page = require('be-paige').Page,
 		},
 
 		selectors: {
-			// Box
+			// box
 			accountBox: '.my-account',
 			accountInfoBox: '.info-box.client-info-box',
 			addressBox: '.box-title.section-title.arrow.underline-white',
@@ -45,6 +46,7 @@ var Page = require('be-paige').Page,
 			return this;
 		},
 
+		// CLICK
 		/**
 		 * Skip the month.
 		 * @return {Object} the context
@@ -78,6 +80,7 @@ var Page = require('be-paige').Page,
 			return this;
 		},
 
+		// SUBMIT
 		/**
 		 * Skip the month.
 		 * @return {Object} the context
@@ -100,13 +103,13 @@ var Page = require('be-paige').Page,
 			return this;
 		},
 
-		// verify
+		// VERIFY
 		/**
 		 * Verify that the month has been skipped.
 		 * @return {Object} the context
 		 */
 		verifyMonthHasBeenSkipped: function() {
-			return this.verifyContent(this.selectors.contentBox, 'You have successfully skipped');
+			return this.verifyContent(this.selectors.contentBox, messages.customer.confirmation_month_skipped);
 		},
 
 		/**
@@ -124,7 +127,7 @@ var Page = require('be-paige').Page,
 		 * @return {Object} the context
 		 */
 		verifySubscriptionHasBeenCancelled: function() {
-			return this.verifyContent(common.selectors.message, 'Subscription canceled');
+			return this.verifyContent(selectors.message, messages.customer.subscription_canceled);
 		}
 	}).with(Forms);
 

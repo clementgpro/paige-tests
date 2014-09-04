@@ -1,7 +1,5 @@
 var theQuiz = require('../the-quiz/the-quiz.js'),
-
   Forms = require('be-paige').components.form,
-
   SignUp = theQuiz.extend({
 
     forms: {
@@ -9,25 +7,10 @@ var theQuiz = require('../the-quiz/the-quiz.js'),
         context: '#form-validate',
         submit: '#form-validate [type=submit]',
         inputs: {
-          firstNameTextField: {
-            selector: '#firstname',
-            type: 'text'
-          },
-
-          lastNameTextField: {
-            selector: '#lastname',
-            type: 'text'
-          },
-
-          emailAddressTextField: {
-            selector: '#email_address',
-            type: 'text'
-          },
-
-          passwordTextField: {
-            selector: '#password',
-            type: 'text'
-          }
+          firstNameTextField: '#firstname',
+          lastNameTextField: '#lastname',
+          emailAddressTextField: '#email_address',
+          passwordTextField: '#password'
         }
       }
     },
