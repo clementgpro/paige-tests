@@ -19,4 +19,4 @@ It mainly uses
 
 To run paige tests, 
 - open a first console and run `$ java  -jar /your/path/to/selenium-server-standalone-2.42.2.jar`
-- then open an anther console and run `$ npm test`. The reports of the tests are write in reports/test-reports.xml
+- then open an anther console and run `$ npm test`. The reports of the tests are written in reports/test-reports.xml
