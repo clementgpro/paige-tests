@@ -19,16 +19,7 @@ bescribe("Payment", common.config, function(context, describe, it) {
 	});
 
 	describe("Cart", function() {
-		it("Should say the cart is empty", function() {
-			winePaymentContext.verifyCartEmpty();
-		});
-
-		it("Should clear the cart", function() {
-			PurchaseHelper.purchase(winePaymentContext).redirectTo(PaymentPage);
-			winePaymentContext
-				.clearCart()
-				.verifyCartEmpty();
-		});
+		
 	});
 
 	describe("Coupon", function() {
