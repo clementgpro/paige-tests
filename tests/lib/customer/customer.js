@@ -1,6 +1,7 @@
 /* jshint expr:true */
 var Page = require('be-paige').Page,
 	Forms = require('be-paige').components.form,
+    Address = require('./components/address.js'),
 	expect = require('chai').expect,
 	messages = require('../common/messages.js'),
 	selectors = require('../common/selectors.js'),
@@ -129,6 +130,6 @@ var Page = require('be-paige').Page,
 		verifySubscriptionHasBeenCancelled: function() {
 			return this.verifyContent(selectors.message, messages.customer.subscription_canceled);
 		}
-	}).with(Forms);
+	}).with(Forms, Address);
 
 module.exports = Customer;

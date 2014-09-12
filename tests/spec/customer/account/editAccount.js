@@ -34,7 +34,7 @@ bescribe("Edit account information", common.config, function(context, describe, 
         .onPage();
     });
 
-    it("Should edit the first name because it's empty", function() {
+    it("Should edit the first names", function() {
       customerAccountEditContext.completeEditForm('new first name', 'new last name', account.email)
         .submitEditForm()
         .switchTo(CustomerAccountPage)
@@ -50,7 +50,7 @@ bescribe("Edit account information", common.config, function(context, describe, 
         .onPage();
     });
 
-    it("Should edit the last name because it's empty", function() {
+    it("Should edit the last name", function() {
       customerAccountEditContext.completeEditForm('new first name', 'new last name', account.email)
         .submitEditForm()
         .switchTo(CustomerAccountPage)
@@ -84,7 +84,7 @@ bescribe("Edit account information", common.config, function(context, describe, 
         .onPage();
     });
 
-    it("Should edit the password because there are no errors", function() {
+    it("Should edit the password because", function() {
       customerAccountEditContext
         .showPasswordForm()
         .completePasswordInformation(account.password, 'newpassword', 'newpassword')
@@ -110,7 +110,7 @@ bescribe("Edit account information", common.config, function(context, describe, 
         .onPage();
     });
 
-    it("Should edit the mail address because there are no errors", function() {
+    it("Should edit the mail address", function() {
       customerAccountEditContext.completeEditForm('new first name', 'new last name', 'new' + account.email)
         .submitEditForm()
         .switchTo(CustomerAccountPage)
