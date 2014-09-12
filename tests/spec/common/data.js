@@ -1,6 +1,6 @@
 module.exports = {
 	account: {
-		email: 'test.glassful@yopmail.com',
+		email: 'glassful.test@yopmail.com',
 		password: 'password'
 	},
 	createNewAccount: function() {
