@@ -14,7 +14,7 @@ $ npm install
 
 It mainly uses 
 - [Be-paige](https://github.com/behance/Paige)
-- [Mocha](http://visionmedia.github.io/mocha/)
+- [Mocha](http://mochajs.org/)
 - [Chai](http://chaijs.com/)
 
 To run paige tests, 
